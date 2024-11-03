@@ -1,10 +1,20 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
 import karas.dominik.fitnesstracker.measurement.application.dto.CreateMeasurementCommand;
+import karas.dominik.fitnesstracker.measurement.application.valueobject.BodyWeight;
+import karas.dominik.fitnesstracker.measurement.application.valueobject.Circumference;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.ARM;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.BELLY;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.CALF;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.CHEST;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.FOREARM;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.HIPS;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.THIGH;
+import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.WAIST;
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
@@ -12,16 +22,16 @@ class Request2CommandMapper {
 
     static CreateMeasurementCommand asCommand(CreateMeasurementRequest request, UUID userId) {
         return CreateMeasurementCommand.builder()
-                .weight(request.weight())
+                .weight(BodyWeight.of(request.weight()))
                 .userId(userId)
-                .calf(request.calf())
-                .thigh(request.thigh())
-                .hips(request.hips())
-                .waist(request.waist())
-                .belly(request.belly())
-                .chest(request.chest())
-                .arm(request.arm())
-                .forearm(request.forearm())
+                .calf(Circumference.of(request.calf(), CALF))
+                .thigh(Circumference.of(request.thigh(), THIGH))
+                .hips(Circumference.of(request.hips(), HIPS))
+                .waist(Circumference.of(request.waist(), WAIST))
+                .belly(Circumference.of(request.belly(), BELLY))
+                .chest(Circumference.of(request.chest(), CHEST))
+                .arm(Circumference.of(request.arm(), ARM))
+                .forearm(Circumference.of(request.forearm(), FOREARM))
                 .build();
     }
 }

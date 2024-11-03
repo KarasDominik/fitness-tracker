@@ -50,4 +50,16 @@ public class FieldAssertions {
     public static boolean isEmail(String value) {
         return EmailValidator.getInstance().isValid(value);
     }
+
+    public static void isPositive(double value, FieldInfo fieldInfo) {
+        if (value <= 0) {
+            throw new InvalidFieldException(String.format("%s must be positive", fieldInfo.name()));
+        }
+    }
+
+    public static void isNoGreaterThan(double value, FieldInfo fieldInfo, double maxValue) {
+        if (value > maxValue) {
+            throw new InvalidFieldException(String.format("%s must be less than %.0f", fieldInfo.name(), maxValue));
+        }
+    }
 }

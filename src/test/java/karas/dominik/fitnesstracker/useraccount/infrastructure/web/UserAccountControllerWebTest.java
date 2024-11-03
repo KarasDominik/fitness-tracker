@@ -1,6 +1,6 @@
 package karas.dominik.fitnesstracker.useraccount.infrastructure.web;
 
-import karas.dominik.fitnesstracker.config.SecurityConfiguration;
+import karas.dominik.fitnesstracker.config.BaseAbstractWebTest;
 import karas.dominik.fitnesstracker.useraccount.UserAccountService;
 import karas.dominik.fitnesstracker.useraccount.application.exception.UserAccountCreationException;
 import org.junit.jupiter.api.Nested;
@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.stream.Stream;
@@ -26,8 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserAccountController.class)
-@Import(SecurityConfiguration.class)
-public class UserAccountControllerWebTest {
+public class UserAccountControllerWebTest extends BaseAbstractWebTest {
 
     private static final String PATH = "/api/v1/user";
 
