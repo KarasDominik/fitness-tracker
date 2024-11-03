@@ -17,12 +17,12 @@ public class UserAccountAssertions {
     private final UserAccounts userAccounts;
     private final PasswordEncoder passwordEncoder;
 
-    public void assertUserAccountExists(UUID id, Map<String, String> expected) {
+    public void assertUserAccountExists(UUID id, Map<String, Object> expected) {
         assertThat(userAccounts.findById(id))
                 .isPresent()
                 .hasValueSatisfying(userAccount -> {
                     assertThat(userAccount.getEmail()).isEqualTo(expected.get("email"));
-                    assertThat(passwordEncoder.matches(expected.get("password"), userAccount.getPassword())).isTrue();
+                    assertThat(passwordEncoder.matches(expected.get("password").toString(), userAccount.getPassword())).isTrue();
                 });
     }
 }

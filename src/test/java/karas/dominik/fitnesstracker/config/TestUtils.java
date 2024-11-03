@@ -18,7 +18,7 @@ public class TestUtils {
         return new String(Files.readAllBytes(Paths.get(path)));
     }
 
-    public static Map<String, String> parsed(String json) {
+    public static Map<String, Object> parsed(String json) {
         return new Gson().fromJson(json, new TypeToken<Map<String, String>>() {}.getType());
     }
 }

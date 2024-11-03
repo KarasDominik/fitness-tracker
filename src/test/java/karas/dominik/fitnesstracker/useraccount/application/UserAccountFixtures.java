@@ -4,6 +4,7 @@ import karas.dominik.fitnesstracker.useraccount.application.UserAccountsForTests
 import karas.dominik.fitnesstracker.useraccount.infrastructure.persistence.UserAccount;
 import karas.dominik.fitnesstracker.useraccount.infrastructure.persistence.UserAccounts;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Component;
 public class UserAccountFixtures {
 
     private final UserAccounts userAccounts;
+    private final PasswordEncoder passwordEncoder;
 
     public void setUp(UserAccountTestData data) {
         userAccounts.save(UserAccount.builder()
+                .id(data.userId())
                 .email(data.email().value())
-                .password(data.password().value())
+                .password(passwordEncoder.encode(data.password().value()))
                 .build());
     }
 }
