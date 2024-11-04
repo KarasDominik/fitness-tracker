@@ -22,7 +22,7 @@ class CreateMeasurementUseCase {
         log.info("Creating new measurement for user {}", command.userId());
         var measurement = Measurement.create(command);
         measurements.save(measurement);
-        log.info("Measurement {} created for user {}", measurement.getId(), command.userId());
-        return measurement.getId();
+        log.info("Measurement {} created for user {}", measurement.id(), command.userId());
+        return measurement.id();
     }
 }

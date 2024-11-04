@@ -17,7 +17,7 @@ public class LoggedUserProvider {
         return Optional.ofNullable(getAuthentication())
                 .map(Authentication::getPrincipal)
                 .map(principal -> (AppUserDetails) principal)
-                .map(userDetails -> new LoggedUser(userDetails.getId()))
+                .map(userDetails -> new LoggedUser(userDetails.id()))
                 .orElseThrow(() -> {
                     log.error("Error while getting logged user");
                     return new RuntimeException("Error while getting logged user");

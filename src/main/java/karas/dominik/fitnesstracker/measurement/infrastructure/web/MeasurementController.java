@@ -1,6 +1,7 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
 import karas.dominik.fitnesstracker.common.LoggedUserProvider;
+import karas.dominik.fitnesstracker.common.TimeProvider;
 import karas.dominik.fitnesstracker.measurement.MeasurementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ class MeasurementController {
 
     private final MeasurementService service;
     private final LoggedUserProvider loggedUserProvider;
+    private final TimeProvider timeProvider;
 
     @GetMapping
     String get() {
@@ -30,6 +32,6 @@ class MeasurementController {
     @ResponseStatus(CREATED)
     CreateMeasurementResponse create(@RequestBody CreateMeasurementRequest request) {
         var loggedUser = loggedUserProvider.getLoggedUser();
-        return CreateMeasurementResponse.of(service.create(asCommand(request, loggedUser.id())));
+        return CreateMeasurementResponse.of(service.create(asCommand(request, loggedUser.id(), timeProvider::now)));
     }
 }

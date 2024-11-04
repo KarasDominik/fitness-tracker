@@ -1,6 +1,7 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
 import karas.dominik.fitnesstracker.config.BaseAbstractITTest;
+import karas.dominik.fitnesstracker.config.FixedTimeProvider;
 import karas.dominik.fitnesstracker.measurement.application.MeasurementAssertions;
 import karas.dominik.fitnesstracker.useraccount.application.UserAccountsForTests.BOB;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
@@ -22,6 +24,8 @@ public class MeasurementControllerITTest extends BaseAbstractITTest {
 
     @Autowired
     private MeasurementAssertions assertions;
+    @Autowired
+    private FixedTimeProvider timeProvider;
 
     @BeforeEach
     protected void setUp() {
@@ -39,6 +43,7 @@ public class MeasurementControllerITTest extends BaseAbstractITTest {
         @Test
         void shouldCreateMeasurement() throws IOException {
             var request = fetchJsonFrom(Requests.VALID);
+            timeProvider.setNow(Instant.now());
 
             var id =
                     given()
@@ -54,6 +59,7 @@ public class MeasurementControllerITTest extends BaseAbstractITTest {
 
             var expected = parsed(request);
             expected.put("userId", BOB.ID);
+            expected.put("createdDate", timeProvider.now().toString());
             assertions.assertMeasurementCreated(UUID.fromString(id), expected);
         }
     }

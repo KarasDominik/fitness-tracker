@@ -5,6 +5,7 @@ import karas.dominik.fitnesstracker.measurement.application.valueobject.BodyWeig
 import karas.dominik.fitnesstracker.measurement.application.valueobject.Circumference;
 import lombok.Builder;
 
+import java.time.Instant;
 import java.util.UUID;
 
 import static karas.dominik.fitnesstracker.common.FieldAssertions.notNull;
@@ -12,7 +13,8 @@ import static karas.dominik.fitnesstracker.common.FieldAssertions.notNull;
 @Builder
 public record CreateMeasurementCommand(UUID userId, BodyWeight weight, Circumference calf, Circumference thigh,
                                        Circumference hips, Circumference waist, Circumference belly,
-                                       Circumference chest, Circumference arm, Circumference forearm) {
+                                       Circumference chest, Circumference arm, Circumference forearm,
+                                       Instant date) {
 
     private static final class FieldInfos {
         private static final FieldInfo USER_ID = new FieldInfo("UserId");
@@ -25,6 +27,7 @@ public record CreateMeasurementCommand(UUID userId, BodyWeight weight, Circumfer
         private static final FieldInfo CHEST = new FieldInfo("Chest measurement");
         private static final FieldInfo ARM = new FieldInfo("Arm measurement");
         private static final FieldInfo FOREARM = new FieldInfo("Forearm measurement");
+        private static final FieldInfo DATE = new FieldInfo("Date");
     }
 
     public CreateMeasurementCommand {
@@ -38,5 +41,6 @@ public record CreateMeasurementCommand(UUID userId, BodyWeight weight, Circumfer
         notNull(chest, FieldInfos.CHEST);
         notNull(arm, FieldInfos.ARM);
         notNull(forearm, FieldInfos.FOREARM);
+        notNull(date, FieldInfos.DATE);
     }
 }

@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -32,6 +33,7 @@ public class Measurement {
                 .chest(command.chest().value())
                 .arm(command.arm().value())
                 .forearm(command.forearm().value())
+                .date(command.date())
                 .build();
     }
 
@@ -47,4 +49,5 @@ public class Measurement {
     private double chest;
     private double arm;
     private double forearm;
+    private Instant date;
 }

@@ -7,9 +7,11 @@ import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.api.Assertions;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
 
+import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
@@ -30,7 +32,8 @@ public class MeasurementAssertions {
                         .hasWaist(Double.parseDouble(expected.get("waist").toString()))
                         .hasChest(Double.parseDouble(expected.get("chest").toString()))
                         .hasArm(Double.parseDouble(expected.get("arm").toString()))
-                        .hasForearm(Double.parseDouble(expected.get("forearm").toString())));
+                        .hasForearm(Double.parseDouble(expected.get("forearm").toString()))
+                        .hasCreatedDate(Instant.parse(expected.get("createdDate").toString())));
     }
 
     static class MeasurementAssert extends AbstractAssert<MeasurementAssert, Measurement> {
@@ -45,72 +48,79 @@ public class MeasurementAssertions {
             }
 
         MeasurementAssert hasUserId(UUID expected) {
-            Assertions.assertThat(actual.getUserId())
-                    .as("Expected measurement to have user id <%s> but was <%s>", expected, actual.getUserId())
+            Assertions.assertThat(actual.userId())
+                    .as("Expected measurement to have user id <%s> but was <%s>", expected, actual.userId())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasWeight(double expected) {
-            Assertions.assertThat(actual.getWeight())
-                    .as("Expected measurement to have weight <%s> but was <%s>", expected, actual.getWeight())
+            Assertions.assertThat(actual.weight())
+                    .as("Expected measurement to have weight <%s> but was <%s>", expected, actual.weight())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasCalf(double expected) {
-            Assertions.assertThat(actual.getCalf())
-                    .as("Expected measurement to have calf <%s> but was <%s>", expected, actual.getCalf())
+            Assertions.assertThat(actual.calf())
+                    .as("Expected measurement to have calf <%s> but was <%s>", expected, actual.calf())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasThigh(double expected) {
-            Assertions.assertThat(actual.getThigh())
-                    .as("Expected measurement to have thigh <%s> but was <%s>", expected, actual.getThigh())
+            Assertions.assertThat(actual.thigh())
+                    .as("Expected measurement to have thigh <%s> but was <%s>", expected, actual.thigh())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasHips(double expected) {
-            Assertions.assertThat(actual.getHips())
-                    .as("Expected measurement to have hips <%s> but was <%s>", expected, actual.getHips())
+            Assertions.assertThat(actual.hips())
+                    .as("Expected measurement to have hips <%s> but was <%s>", expected, actual.hips())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasBelly(double expected) {
-            Assertions.assertThat(actual.getBelly())
-                    .as("Expected measurement to have belly <%s> but was <%s>", expected, actual.getBelly())
+            Assertions.assertThat(actual.belly())
+                    .as("Expected measurement to have belly <%s> but was <%s>", expected, actual.belly())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasWaist(double expected) {
-            Assertions.assertThat(actual.getWaist())
-                    .as("Expected measurement to have waist <%s> but was <%s>", expected, actual.getWaist())
+            Assertions.assertThat(actual.waist())
+                    .as("Expected measurement to have waist <%s> but was <%s>", expected, actual.waist())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasChest(double expected) {
-            Assertions.assertThat(actual.getChest())
-                    .as("Expected measurement to have chest <%s> but was <%s>", expected, actual.getChest())
+            Assertions.assertThat(actual.chest())
+                    .as("Expected measurement to have chest <%s> but was <%s>", expected, actual.chest())
                     .isEqualTo(expected);
             return this;
         }
 
         MeasurementAssert hasArm(double expected) {
-            Assertions.assertThat(actual.getArm())
-                    .as("Expected measurement to have arm <%s> but was <%s>", expected, actual.getArm())
+            Assertions.assertThat(actual.arm())
+                    .as("Expected measurement to have arm <%s> but was <%s>", expected, actual.arm())
                     .isEqualTo(expected);
             return this;
         }
 
-        void hasForearm(double expected) {
-            Assertions.assertThat(actual.getForearm())
-                    .as("Expected measurement to have forearm <%s> but was <%s>", expected, actual.getForearm())
+        MeasurementAssert hasForearm(double expected) {
+            Assertions.assertThat(actual.forearm())
+                    .as("Expected measurement to have forearm <%s> but was <%s>", expected, actual.forearm())
                     .isEqualTo(expected);
+            return this;
+        }
+
+        void hasCreatedDate(Instant expected) {
+            Assertions.assertThat(actual.date().truncatedTo(SECONDS))
+                    .as("Expected measurement to have date <%s> but was <%s>", expected, actual.date())
+                    .isEqualTo(expected.truncatedTo(SECONDS));
         }
     }
 }
