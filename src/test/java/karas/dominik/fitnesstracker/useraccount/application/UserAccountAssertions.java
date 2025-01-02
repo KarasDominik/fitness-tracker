@@ -21,8 +21,8 @@ public class UserAccountAssertions {
         assertThat(userAccounts.findById(id))
                 .isPresent()
                 .hasValueSatisfying(userAccount -> {
-                    assertThat(userAccount.getEmail()).isEqualTo(expected.get("email"));
-                    assertThat(passwordEncoder.matches(expected.get("password").toString(), userAccount.getPassword())).isTrue();
+                    assertThat(userAccount.email()).isEqualTo(expected.get("email"));
+                    assertThat(passwordEncoder.matches(expected.get("password").toString(), userAccount.password())).isTrue();
                 });
     }
 }
