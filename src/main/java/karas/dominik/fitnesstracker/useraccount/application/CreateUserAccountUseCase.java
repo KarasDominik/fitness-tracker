@@ -29,7 +29,7 @@ class CreateUserAccountUseCase {
         var user = UserAccount.create(command, passwordEncoder::encode);
         userAccounts.save(user);
         log.info("User account {} created", command.email());
-        return user.getId();
+        return user.id();
     }
 
     private void assertUserCanBeCreated(CreateUserAccountCommand command) {

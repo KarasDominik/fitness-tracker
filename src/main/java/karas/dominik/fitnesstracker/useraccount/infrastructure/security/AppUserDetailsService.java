@@ -17,7 +17,7 @@ public class AppUserDetailsService implements UserDetailsService {
     @Override
     public AppUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userAccounts.findByEmail(username)
-                .map(user -> new AppUserDetails(user.getId(), user.getEmail(), user.getPassword(), emptyList()))
+                .map(user -> new AppUserDetails(user.id(), user.email(), user.password(), emptyList()))
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User account %s not found", username)));
     }
 }
