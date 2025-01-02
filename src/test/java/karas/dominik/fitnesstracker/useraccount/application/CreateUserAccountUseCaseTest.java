@@ -38,7 +38,7 @@ class CreateUserAccountUseCaseTest {
         // when - then
         assertThatThrownBy(() -> testee.execute(command))
                 .isInstanceOf(UserAccountCreationException.class)
-                .hasFieldOrPropertyWithValue("message", "Email already taken");
+                .hasFieldOrPropertyWithValue("errorMessage", "Email already taken");
 
         then(userAccounts).should(never()).save(any());
     }

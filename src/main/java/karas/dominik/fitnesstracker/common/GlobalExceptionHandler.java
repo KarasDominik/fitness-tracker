@@ -23,13 +23,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(BAD_REQUEST)
     public void handle(HttpServletResponse response, InvalidFieldException exception) throws IOException {
         response.setContentType("application/json");
-        response.getWriter().write(String.format(INVALID_FIELD_MESSAGE, exception.getMessage()));
+        response.getWriter().write(String.format(INVALID_FIELD_MESSAGE, exception.message()));
     }
 
     @ExceptionHandler(UserAccountCreationException.class)
     @ResponseStatus(BAD_REQUEST)
     public void handle(HttpServletResponse response, UserAccountCreationException exception) throws IOException {
         response.setContentType("application/json");
-        response.getWriter().write(String.format(INVALID_FIELD_MESSAGE, exception.getMessage()));
+        response.getWriter().write(String.format(INVALID_FIELD_MESSAGE, exception.errorMessage()));
     }
 }

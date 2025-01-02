@@ -7,9 +7,9 @@ public class UserAccountCreationException extends RuntimeException {
 
     private static final String MESSAGE = "Email already taken";
 
-    private final String message;
+    private final String errorMessage;
 
     public UserAccountCreationException() {
-        this.message = MESSAGE;
+        this.errorMessage = MESSAGE;
     }
 }
