@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.common;
+package karas.dominik.fitnesstracker.common.time;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

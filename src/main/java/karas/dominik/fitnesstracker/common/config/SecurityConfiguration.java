@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.config;
+package karas.dominik.fitnesstracker.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

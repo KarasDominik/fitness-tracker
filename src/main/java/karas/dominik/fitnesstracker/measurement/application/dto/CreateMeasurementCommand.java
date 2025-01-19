@@ -1,6 +1,6 @@
 package karas.dominik.fitnesstracker.measurement.application.dto;
 
-import karas.dominik.fitnesstracker.common.FieldInfo;
+import karas.dominik.fitnesstracker.common.exception.FieldInfo;
 import karas.dominik.fitnesstracker.measurement.application.valueobject.BodyWeight;
 import karas.dominik.fitnesstracker.measurement.application.valueobject.Circumference;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.Builder;
 import java.time.Instant;
 import java.util.UUID;
 
-import static karas.dominik.fitnesstracker.common.FieldAssertions.notNull;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.notNull;
 
 @Builder
 public record CreateMeasurementCommand(UUID userId, BodyWeight weight, Circumference calf, Circumference thigh,

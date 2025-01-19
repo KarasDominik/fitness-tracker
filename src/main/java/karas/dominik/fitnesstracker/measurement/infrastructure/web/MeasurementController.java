@@ -1,7 +1,7 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
-import karas.dominik.fitnesstracker.common.LoggedUserProvider;
-import karas.dominik.fitnesstracker.common.TimeProvider;
+import karas.dominik.fitnesstracker.common.user.LoggedUserProvider;
+import karas.dominik.fitnesstracker.common.time.TimeProvider;
 import karas.dominik.fitnesstracker.measurement.MeasurementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

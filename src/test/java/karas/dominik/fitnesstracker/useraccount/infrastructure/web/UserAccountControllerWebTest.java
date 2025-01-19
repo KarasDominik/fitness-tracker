@@ -88,7 +88,7 @@ public class UserAccountControllerWebTest extends BaseAbstractWebTest {
         @Test
         void shouldReturn400WhenEmailAlreadyTaken() throws Exception {
             //
-            doThrow(new UserAccountCreationException()).when(service).create(any());
+            doThrow(new UserAccountCreationException("Email already taken")).when(service).create(any());
 
             mockMvc.perform(post(PATH)
                             .with(csrf())

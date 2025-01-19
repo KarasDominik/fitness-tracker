@@ -1,13 +1,13 @@
 package karas.dominik.fitnesstracker.useraccount.application.valueobject;
 
-import karas.dominik.fitnesstracker.common.FieldInfo;
+import karas.dominik.fitnesstracker.common.exception.FieldInfo;
 
 import java.util.Set;
 
-import static karas.dominik.fitnesstracker.common.FieldAssertions.isValid;
-import static karas.dominik.fitnesstracker.common.FieldAssertions.maxLength;
-import static karas.dominik.fitnesstracker.common.FieldAssertions.minLength;
-import static karas.dominik.fitnesstracker.common.FieldAssertions.notBlank;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.isValid;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.maxLength;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.minLength;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.notBlank;
 
 public record DecodedPassword(String value) {
 

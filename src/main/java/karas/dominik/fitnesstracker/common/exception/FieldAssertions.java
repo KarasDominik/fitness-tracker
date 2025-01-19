@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.common;
+package karas.dominik.fitnesstracker.common.exception;
 
 import io.micrometer.common.util.StringUtils;
 import lombok.NoArgsConstructor;

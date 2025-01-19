@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-import static karas.dominik.fitnesstracker.common.GeneralAssertions.isFalse;
+import static karas.dominik.fitnesstracker.common.exception.GeneralAssertions.isFalse;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +33,7 @@ class CreateUserAccountUseCase {
     }
 
     private void assertUserCanBeCreated(CreateUserAccountCommand command) {
-        isFalse(userAccounts.existsByEmail(command.email().value()), UserAccountCreationException::new);
+        isFalse(userAccounts.existsByEmail(command.email().value()),
+                () -> new UserAccountCreationException("Email already taken"));
     }
 }

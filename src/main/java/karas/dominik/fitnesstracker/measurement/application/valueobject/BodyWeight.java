@@ -1,10 +1,10 @@
 package karas.dominik.fitnesstracker.measurement.application.valueobject;
 
-import karas.dominik.fitnesstracker.common.FieldInfo;
+import karas.dominik.fitnesstracker.common.exception.FieldInfo;
 
-import static karas.dominik.fitnesstracker.common.FieldAssertions.isNoGreaterThan;
-import static karas.dominik.fitnesstracker.common.FieldAssertions.isPositive;
-import static karas.dominik.fitnesstracker.common.FieldAssertions.notNull;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.isNoGreaterThan;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.isPositive;
+import static karas.dominik.fitnesstracker.common.exception.FieldAssertions.notNull;
 
 public record BodyWeight(double value) {
 

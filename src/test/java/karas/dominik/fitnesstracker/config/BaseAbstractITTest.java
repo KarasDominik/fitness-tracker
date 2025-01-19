@@ -9,19 +9,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = {DockerizedDbInitializer.class})
 @ActiveProfiles("test")
 public class BaseAbstractITTest {
-
-    @Autowired
-    protected UserAccountFixtures userAccounts;
-
-    @LocalServerPort
-    private int port;
-
-    @BeforeEach
-    protected void setUp() {
-        RestAssured.port = port;
-    }
 }

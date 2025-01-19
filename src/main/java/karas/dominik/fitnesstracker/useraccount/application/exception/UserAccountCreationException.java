@@ -1,15 +1,12 @@
 package karas.dominik.fitnesstracker.useraccount.application.exception;
 
+import karas.dominik.fitnesstracker.common.exception.ConflictedDataException;
 import lombok.Getter;
 
 @Getter
-public class UserAccountCreationException extends RuntimeException {
+public class UserAccountCreationException extends ConflictedDataException {
 
-    private static final String MESSAGE = "Email already taken";
-
-    private final String errorMessage;
-
-    public UserAccountCreationException() {
-        this.errorMessage = MESSAGE;
+    public UserAccountCreationException(String message) {
+        super(message);
     }
 }

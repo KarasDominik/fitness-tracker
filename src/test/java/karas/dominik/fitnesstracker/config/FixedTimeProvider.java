@@ -1,6 +1,6 @@
 package karas.dominik.fitnesstracker.config;
 
-import karas.dominik.fitnesstracker.common.TimeProvider;
+import karas.dominik.fitnesstracker.common.time.TimeProvider;
 import lombok.Getter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

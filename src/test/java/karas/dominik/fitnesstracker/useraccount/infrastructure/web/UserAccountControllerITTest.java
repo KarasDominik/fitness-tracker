@@ -1,10 +1,18 @@
 package karas.dominik.fitnesstracker.useraccount.infrastructure.web;
 
-import karas.dominik.fitnesstracker.config.BaseAbstractITTest;
+import io.restassured.RestAssured;
+import karas.dominik.fitnesstracker.config.DockerizedDbInitializer;
 import karas.dominik.fitnesstracker.useraccount.application.UserAccountAssertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.modulith.test.ApplicationModuleTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -14,13 +22,27 @@ import static io.restassured.http.ContentType.JSON;
 import static karas.dominik.fitnesstracker.config.TestUtils.fetchJsonFrom;
 import static karas.dominik.fitnesstracker.config.TestUtils.parsed;
 
-public class UserAccountControllerITTest extends BaseAbstractITTest {
+@ApplicationModuleTest(
+        mode = ApplicationModuleTest.BootstrapMode.STANDALONE,
+        webEnvironment = WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(initializers = {DockerizedDbInitializer.class})
+@ComponentScan(basePackages = "karas.dominik.fitnesstracker.useraccount")
+@ActiveProfiles("test")
+public class UserAccountControllerITTest {
+
+    @LocalServerPort
+    private int port;
 
     private static final String PATH = "/api/v1/user";
     private static final String REQUESTS_MAIN_DIR = "src/test/resources/web/requests/useraccount";
 
     @Autowired
     private UserAccountAssertions assertions;
+
+    @BeforeEach
+    protected void setUp() {
+        RestAssured.port = port;
+    }
 
     @Nested
     class CreateTests {

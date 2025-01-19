@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.common;
+package karas.dominik.fitnesstracker.common.time;
 
 import java.time.Instant;
 

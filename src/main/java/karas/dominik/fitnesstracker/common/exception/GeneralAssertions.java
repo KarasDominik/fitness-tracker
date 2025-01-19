@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.common;
+package karas.dominik.fitnesstracker.common.exception;
 
 import lombok.NoArgsConstructor;
 
