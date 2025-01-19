@@ -4,7 +4,6 @@ import karas.dominik.fitnesstracker.common.LoggedUserProvider;
 import karas.dominik.fitnesstracker.common.TimeProvider;
 import karas.dominik.fitnesstracker.measurement.MeasurementService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +21,6 @@ class MeasurementController {
     private final MeasurementService service;
     private final LoggedUserProvider loggedUserProvider;
     private final TimeProvider timeProvider;
-
-    @GetMapping
-    String get() {
-        return "Hello World!";
-    }
 
     @PostMapping
     @ResponseStatus(CREATED)
