@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.config;
+package karas.dominik.fitnesstracker.common;
 
 import karas.dominik.fitnesstracker.common.config.SecurityConfiguration;
 import org.springframework.context.annotation.Import;

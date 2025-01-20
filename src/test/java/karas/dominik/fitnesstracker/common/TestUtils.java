@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.config;
+package karas.dominik.fitnesstracker.common;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

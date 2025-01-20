@@ -3,7 +3,7 @@ package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 import karas.dominik.fitnesstracker.common.user.LoggedUserProvider;
 import karas.dominik.fitnesstracker.common.user.LoggedUserProvider.LoggedUser;
 import karas.dominik.fitnesstracker.common.time.TimeProvider;
-import karas.dominik.fitnesstracker.config.BaseAbstractWebTest;
+import karas.dominik.fitnesstracker.common.BaseAbstractWebTest;
 import karas.dominik.fitnesstracker.measurement.MeasurementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import static karas.dominik.fitnesstracker.config.TestUtils.fetchJsonFrom;
+import static karas.dominik.fitnesstracker.common.TestUtils.fetchJsonFrom;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;

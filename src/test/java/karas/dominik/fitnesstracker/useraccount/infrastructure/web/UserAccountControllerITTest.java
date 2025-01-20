@@ -1,13 +1,12 @@
 package karas.dominik.fitnesstracker.useraccount.infrastructure.web;
 
 import io.restassured.RestAssured;
-import karas.dominik.fitnesstracker.config.DockerizedDbInitializer;
+import karas.dominik.fitnesstracker.common.DockerizedDbInitializer;
 import karas.dominik.fitnesstracker.useraccount.application.UserAccountAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.modulith.test.ApplicationModuleTest;
@@ -19,12 +18,14 @@ import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
-import static karas.dominik.fitnesstracker.config.TestUtils.fetchJsonFrom;
-import static karas.dominik.fitnesstracker.config.TestUtils.parsed;
+import static karas.dominik.fitnesstracker.common.TestUtils.fetchJsonFrom;
+import static karas.dominik.fitnesstracker.common.TestUtils.parsed;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+import static org.springframework.modulith.test.ApplicationModuleTest.BootstrapMode.STANDALONE;
 
 @ApplicationModuleTest(
-        mode = ApplicationModuleTest.BootstrapMode.STANDALONE,
-        webEnvironment = WebEnvironment.RANDOM_PORT)
+        mode = STANDALONE,
+        webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = {DockerizedDbInitializer.class})
 @ComponentScan(basePackages = "karas.dominik.fitnesstracker.useraccount")
 @ActiveProfiles("test")

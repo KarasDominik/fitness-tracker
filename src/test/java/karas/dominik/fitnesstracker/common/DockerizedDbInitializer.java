@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.config;
+package karas.dominik.fitnesstracker.common;
 
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;

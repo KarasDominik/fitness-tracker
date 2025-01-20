@@ -1,12 +1,10 @@
 package karas.dominik.fitnesstracker.common.time;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
-@Component("timeProvider")
-@Profile("!test")
+@Component
 public class SystemTimeProvider implements TimeProvider {
 
     @Override

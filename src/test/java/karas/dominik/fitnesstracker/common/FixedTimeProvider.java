@@ -1,4 +1,4 @@
-package karas.dominik.fitnesstracker.config;
+package karas.dominik.fitnesstracker.common;
 
 import karas.dominik.fitnesstracker.common.time.TimeProvider;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
-@Component("timeProvider")
+@Component
 @Profile("test")
 @Getter
 public class FixedTimeProvider implements TimeProvider {

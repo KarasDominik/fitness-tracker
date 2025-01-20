@@ -10,7 +10,7 @@ import static java.util.Collections.emptyList;
 
 @Service
 @RequiredArgsConstructor
-class LoadUserByUsernameUseCase {
+class GetUserDetailsUseCase {
 
     private final UserAccounts userAccounts;
 

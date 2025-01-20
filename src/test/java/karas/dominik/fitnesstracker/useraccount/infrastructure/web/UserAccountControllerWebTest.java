@@ -1,6 +1,6 @@
 package karas.dominik.fitnesstracker.useraccount.infrastructure.web;
 
-import karas.dominik.fitnesstracker.config.BaseAbstractWebTest;
+import karas.dominik.fitnesstracker.common.BaseAbstractWebTest;
 import karas.dominik.fitnesstracker.useraccount.UserAccountService;
 import karas.dominik.fitnesstracker.useraccount.application.exception.UserAccountCreationException;
 import org.junit.jupiter.api.Nested;
@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.stream.Stream;
 
-import static karas.dominik.fitnesstracker.config.TestUtils.fetchJsonFrom;
+import static karas.dominik.fitnesstracker.common.TestUtils.fetchJsonFrom;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -94,7 +94,7 @@ public class UserAccountControllerWebTest extends BaseAbstractWebTest {
                             .with(csrf())
                             .contentType(APPLICATION_JSON)
                             .content(fetchJsonFrom(VALID_REQUESTS.VALID)))
-                    .andExpect(status().isBadRequest())
+                    .andExpect(status().isConflict())
                     .andExpect(jsonPath("$.errorMessage").value("Email already taken"));
         }
     }

@@ -1,5 +1,7 @@
 @org.springframework.modulith.ApplicationModule(
-        allowedDependencies = "useraccount",
+        allowedDependencies = {
+                "useraccount",
+                "measurement"},
         type = OPEN
 )
 package karas.dominik.fitnesstracker.common;
