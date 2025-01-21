@@ -1,12 +1,12 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
+import karas.dominik.fitnesstracker.common.user.UserId;
 import karas.dominik.fitnesstracker.measurement.application.dto.CreateMeasurementCommand;
 import karas.dominik.fitnesstracker.measurement.application.valueobject.BodyWeight;
 import karas.dominik.fitnesstracker.measurement.application.valueobject.Circumference;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.util.UUID;
 import java.util.function.Supplier;
 
 import static karas.dominik.fitnesstracker.measurement.application.dto.BodyPart.ARM;
@@ -22,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 class Request2CommandMapper {
 
-    static CreateMeasurementCommand asCommand(CreateMeasurementRequest request, UUID userId, Supplier<Instant> now) {
+    static CreateMeasurementCommand asCommand(CreateMeasurementRequest request, UserId userId, Supplier<Instant> now) {
         return CreateMeasurementCommand.builder()
                 .weight(BodyWeight.of(request.weight()))
                 .userId(userId)

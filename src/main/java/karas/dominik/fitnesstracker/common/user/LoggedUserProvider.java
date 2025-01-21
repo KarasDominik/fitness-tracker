@@ -6,7 +6,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Slf4j
@@ -27,5 +26,5 @@ public class LoggedUserProvider {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public record LoggedUser(UUID id) {}
+    public record LoggedUser(UserId id) {}
 }

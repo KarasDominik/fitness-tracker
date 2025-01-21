@@ -1,10 +1,9 @@
 package karas.dominik.fitnesstracker.measurement;
 
 import karas.dominik.fitnesstracker.measurement.application.dto.CreateMeasurementCommand;
-
-import java.util.UUID;
+import karas.dominik.fitnesstracker.measurement.application.dto.MeasurementId;
 
 public interface MeasurementService {
 
-    UUID create(CreateMeasurementCommand command);
+    MeasurementId create(CreateMeasurementCommand command);
 }

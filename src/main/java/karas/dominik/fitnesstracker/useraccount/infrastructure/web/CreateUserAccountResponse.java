@@ -1,10 +1,10 @@
 package karas.dominik.fitnesstracker.useraccount.infrastructure.web;
 
-import java.util.UUID;
+import karas.dominik.fitnesstracker.common.user.UserId;
 
-record CreateUserAccountResponse(UUID id) {
+record CreateUserAccountResponse(UserId id) {
 
-    static CreateUserAccountResponse of(UUID id) {
+    static CreateUserAccountResponse of(UserId id) {
         return new CreateUserAccountResponse(id);
     }
 }

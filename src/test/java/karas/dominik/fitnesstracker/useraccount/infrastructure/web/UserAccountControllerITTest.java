@@ -2,6 +2,7 @@ package karas.dominik.fitnesstracker.useraccount.infrastructure.web;
 
 import io.restassured.RestAssured;
 import karas.dominik.fitnesstracker.common.DockerizedDbInitializer;
+import karas.dominik.fitnesstracker.common.user.UserId;
 import karas.dominik.fitnesstracker.useraccount.application.UserAccountAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -14,7 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -59,13 +59,14 @@ public class UserAccountControllerITTest {
                     .when()
                             .contentType(JSON)
                             .body(fetchJsonFrom(VALID))
-                        .post(PATH)
+                            .post(PATH)
                     .then()
-                        .statusCode(201)
-                        .extract()
-                        .jsonPath().getString("id");
+                            .log().all()
+                            .statusCode(201)
+                            .extract()
+                            .jsonPath().getString("id");
 
-            assertions.assertUserAccountExists(UUID.fromString(response), parsed(fetchJsonFrom(VALID)));
+            assertions.assertUserAccountExists(UserId.from(response), parsed(fetchJsonFrom(VALID)));
         }
     }
 }

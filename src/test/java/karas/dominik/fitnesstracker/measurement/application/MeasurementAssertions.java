@@ -1,5 +1,7 @@
 package karas.dominik.fitnesstracker.measurement.application;
 
+import karas.dominik.fitnesstracker.common.user.UserId;
+import karas.dominik.fitnesstracker.measurement.application.dto.MeasurementId;
 import karas.dominik.fitnesstracker.measurement.infrastructure.persistence.Measurement;
 import karas.dominik.fitnesstracker.measurement.infrastructure.persistence.Measurements;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.Map;
-import java.util.UUID;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,10 +21,10 @@ public class MeasurementAssertions {
 
     private final Measurements measurements;
 
-    public void assertMeasurementCreated(UUID id, Map<String, Object> expected) {
+    public void assertMeasurementCreated(MeasurementId id, Map<String, Object> expected) {
         assertThat(measurements.findById(id).orElseThrow())
                 .satisfies(measurement -> MeasurementAssert.assertThat(measurement)
-                        .hasUserId(UUID.fromString(expected.get("userId").toString()))
+                        .hasUserId(UserId.from(expected.get("userId").toString()))
                         .hasWeight(Double.parseDouble(expected.get("weight").toString()))
                         .hasCalf(Double.parseDouble(expected.get("calf").toString()))
                         .hasThigh(Double.parseDouble(expected.get("thigh").toString()))
@@ -47,7 +48,7 @@ public class MeasurementAssertions {
                 return new MeasurementAssert(actual);
             }
 
-        MeasurementAssert hasUserId(UUID expected) {
+        MeasurementAssert hasUserId(UserId expected) {
             Assertions.assertThat(actual.userId())
                     .as("Expected measurement to have user id <%s> but was <%s>", expected, actual.userId())
                     .isEqualTo(expected);

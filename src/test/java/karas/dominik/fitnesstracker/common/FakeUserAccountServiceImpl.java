@@ -1,11 +1,10 @@
 package karas.dominik.fitnesstracker.common;
 
 import karas.dominik.fitnesstracker.common.user.AppUserDetails;
+import karas.dominik.fitnesstracker.common.user.UserId;
 import karas.dominik.fitnesstracker.useraccount.UserAccountService;
 import karas.dominik.fitnesstracker.useraccount.application.dto.CreateUserAccountCommand;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.UUID;
 
 import static java.util.Collections.emptySet;
 import static karas.dominik.fitnesstracker.measurement.config.MeasurementTestConfig.TEST_USER_ID;
@@ -25,7 +24,7 @@ public class FakeUserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public UUID create(CreateUserAccountCommand command) {
-        return UUID.randomUUID();
+    public UserId create(CreateUserAccountCommand command) {
+        return UserId.create();
     }
 }

@@ -1,10 +1,10 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
-import java.util.UUID;
+import karas.dominik.fitnesstracker.measurement.application.dto.MeasurementId;
 
-record CreateMeasurementResponse(UUID id) {
+record CreateMeasurementResponse(MeasurementId id) {
 
-    static CreateMeasurementResponse of(UUID id) {
+    static CreateMeasurementResponse of(MeasurementId id) {
         return new CreateMeasurementResponse(id);
     }
 }

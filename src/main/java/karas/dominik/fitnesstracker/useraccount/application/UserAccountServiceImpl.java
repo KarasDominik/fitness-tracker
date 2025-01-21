@@ -3,11 +3,10 @@ package karas.dominik.fitnesstracker.useraccount.application;
 import karas.dominik.fitnesstracker.common.user.AppUserDetails;
 import karas.dominik.fitnesstracker.useraccount.UserAccountService;
 import karas.dominik.fitnesstracker.useraccount.application.dto.CreateUserAccountCommand;
+import karas.dominik.fitnesstracker.common.user.UserId;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public UUID create(CreateUserAccountCommand command) {
+    public UserId create(CreateUserAccountCommand command) {
         return createUserAccount.execute(command);
     }
 }

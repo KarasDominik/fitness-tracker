@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import karas.dominik.fitnesstracker.common.DockerizedDbInitializer;
 import karas.dominik.fitnesstracker.common.FixedTimeProvider;
 import karas.dominik.fitnesstracker.measurement.application.MeasurementAssertions;
+import karas.dominik.fitnesstracker.measurement.application.dto.MeasurementId;
 import karas.dominik.fitnesstracker.measurement.config.MeasurementTestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -18,7 +19,6 @@ import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.UUID;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -80,7 +80,7 @@ public class MeasurementControllerITTest {
             var expected = parsed(request);
             expected.put("userId", TEST_USER_ID);
             expected.put("createdDate", timeProvider.now().toString());
-            assertions.assertMeasurementCreated(UUID.fromString(id), expected);
+            assertions.assertMeasurementCreated(MeasurementId.from(id), expected);
         }
     }
 }

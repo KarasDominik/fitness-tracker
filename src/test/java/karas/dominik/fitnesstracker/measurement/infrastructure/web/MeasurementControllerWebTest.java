@@ -1,9 +1,10 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.web;
 
+import karas.dominik.fitnesstracker.common.BaseAbstractWebTest;
+import karas.dominik.fitnesstracker.common.time.TimeProvider;
 import karas.dominik.fitnesstracker.common.user.LoggedUserProvider;
 import karas.dominik.fitnesstracker.common.user.LoggedUserProvider.LoggedUser;
-import karas.dominik.fitnesstracker.common.time.TimeProvider;
-import karas.dominik.fitnesstracker.common.BaseAbstractWebTest;
+import karas.dominik.fitnesstracker.common.user.UserId;
 import karas.dominik.fitnesstracker.measurement.MeasurementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -16,7 +17,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.UUID;
 import java.util.stream.Stream;
 
 import static karas.dominik.fitnesstracker.common.TestUtils.fetchJsonFrom;
@@ -45,7 +45,7 @@ class MeasurementControllerWebTest extends BaseAbstractWebTest {
 
     @BeforeEach
     void setUp() {
-        when(loggedUserProvider.getLoggedUser()).thenReturn(new LoggedUser(UUID.randomUUID()));
+        when(loggedUserProvider.getLoggedUser()).thenReturn(new LoggedUser(UserId.create()));
     }
 
     @Nested

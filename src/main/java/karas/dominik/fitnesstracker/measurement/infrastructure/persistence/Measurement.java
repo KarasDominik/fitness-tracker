@@ -1,28 +1,29 @@
 package karas.dominik.fitnesstracker.measurement.infrastructure.persistence;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import karas.dominik.fitnesstracker.common.entity.AbstractIdEntity;
+import karas.dominik.fitnesstracker.common.user.UserId;
 import karas.dominik.fitnesstracker.measurement.application.dto.CreateMeasurementCommand;
+import karas.dominik.fitnesstracker.measurement.application.dto.MeasurementId;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @Entity
 @Table(name = "measurement")
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Measurement {
+public class Measurement extends AbstractIdEntity<MeasurementId> {
 
     public static Measurement create(CreateMeasurementCommand command) {
         return Measurement.builder()
-                .id(UUID.randomUUID())
+                .id(MeasurementId.create())
                 .userId(command.userId())
                 .weight(command.weight().value())
                 .calf(command.calf().value())
@@ -37,9 +38,7 @@ public class Measurement {
                 .build();
     }
 
-    @Id
-    private UUID id;
-    private UUID userId;
+    private UserId userId;
     private double weight;
     private double calf;
     private double thigh;
